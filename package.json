@@ -4,12 +4,20 @@
   "description": "Weather app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha ./app/tests/unit/server/**/*.js",
+    "cover": "node_modules\\.bin\\istanbul cover node_modules/mocha/bin/_mocha app/tests/unit/**/*.js"
   },
   "author": "Mateusz Szymański",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.4.0",
     "chai": "^3.5.0",
-    "mocha": "^2.5.2"
+    "express": "^4.13.4",
+    "mocha": "^2.5.2",
+    "mongoose": "^4.4.19",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.3"
   }
 }

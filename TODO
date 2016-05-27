@@ -1,0 +1,11 @@
+1. Get location api endpoint        
+   # location schema
+      - cords,
+      - addres ("Kalisz, Polska")           
+
+2. Get typeahead endpoint
+   # query schema
+   # return posible addreses based on input:
+      - input = "Sacz", returns array of possible adreses: ["Sączów, Polska", "Saczyn, Polska", "Nowy Sącz, Polska"]
+
+   # lookup our database, if query not found, or query is older than 24 hours, then lookup google api
