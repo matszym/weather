@@ -15,17 +15,22 @@ describe('mongodb database', function() {
    app,
    db,
    appPath = '../../../../',
-   Location = require(appPath + 'models/location-schema.server.model.js');
+   Location;
 
    before(function() {
       var express = require('express');
       app = express();
       db = require('mongoose').connect('mongodb://localhost/test');
       server = app.listen(3000);
+
+      require(appPath + 'models/location-schema.server.model.js');
+
+      Location = mongoose.model('Location');
    });
 
    after(function() {
       server.close();
+      db.disconnect();
    });
 
    afterEach(function(done) {
@@ -58,16 +63,17 @@ describe('mongodb database', function() {
             address: "Saczyn, Polska"
          })
          .then(function(){
-            return Location.find({address: 'Saczyn, Polska'}); 
+            return Location.findOne({address: 'Saczyn, Polska'}); 
          })
          .then(function(result) {
             expect(result).to.exist;
+            expect(result.address).to.be.equal('Saczyn, Polska');
+            done();
          })
          .catch(function(err) {
+            console.log(err);
             expect(err).to.not.exist;
-         })
-         .finally(function() {
-            done();
+            done(err);
          });
       });
       it('should reject documents without cords', function() {
