@@ -1,11 +1,14 @@
-1. Get location api endpoint        
-   # location schema
-      - cords,
-      - addres ("Kalisz, Polska")           
-
-2. Get typeahead endpoint
+1. Get typeahead endpoint
    # query schema
    # return posible addreses based on input:
-      - input = "Sacz", returns array of possible adreses: ["Sączów, Polska", "Saczyn, Polska", "Nowy Sącz, Polska"]
+      - input = "Sacz", returns array of possible adreses: 
+      ["Sączów, Polska", "Saczyn, Polska", "Nowy Sącz, Polska"]
 
-   # lookup our database, if query not found, or query is older than 24 hours, then lookup google api
+   # lookup our database, if query not found, then lookup google api
+   
+2. Get weather endpoint;
+   # req.body.query = {address: String}
+   # app.use('api/weather', location.getLocationFromDB, location.GetLocationFromGoogleMaps, weather.getWeatherFromDB, weather.getWeatherFromOpenWeatherMap)
+   # res.send({temp: {
+      celsius: Number
+   }})
