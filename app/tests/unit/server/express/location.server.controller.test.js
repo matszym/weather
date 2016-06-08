@@ -135,7 +135,7 @@ describe('express', function() {
 
          return expect(location.getLocationFromGoogleMaps(req, res)).to.be.eventually.fulfilled
          .then(function(response) {
-            expect(_.isEqual(response, loc)).to.be.equal(true);
+            expect(response).to.be.deep.equal(loc);
             done();
          })
          .catch(done);
